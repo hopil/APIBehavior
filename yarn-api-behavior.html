@@ -51,10 +51,6 @@ APIBehaviorImpl = {
     _method: {
       type: String,
       observer: '_onMethodChange'
-    },
-    _params: {
-      type: Object,
-      observer: '_onParamsChange'
     }
   },
   
@@ -102,10 +98,6 @@ APIBehaviorImpl = {
     this.ajax.set('withCredentials', newVal);
   },
   
-  _onParamsChange: function(newVal) {
-    this.ajax.set('params', newVal);
-  },
-  
   _makeApi: function() {
     var self = this;
     Object.keys(this.endpoints).forEach(function(endpoint) {
@@ -129,9 +121,9 @@ APIBehaviorImpl = {
             self.set('_body', null);
             
             if(params) {
-              self.set('_params', params);
+              self.set('params', params);
             } else {
-              self.set('_params', {});
+              self.set('params', {});
             }
             
             setEndpointVars(endpoint);
@@ -162,9 +154,9 @@ APIBehaviorImpl = {
             self.set('_body', body);
             
             if(params) {
-              self.set('_params', params);
+              self.set('params', params);
             } else {
-              self.set('_params', {});
+              self.set('params', {});
             }
             
             setEndpointVars(endpoint);
